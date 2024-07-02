@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="beadando.ModifyHabitPage"
+             x:Name="modifyHabitPage">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout>
+
+        <StackLayout Padding="20">
+            <Label Text="Text" FontSize="20" />
+            <Entry Text="{Binding Text}" Placeholder="Habit text" />
+
+            <Label Text="Color" FontSize="20" />
+            <StackLayout Padding="20">
+
+                <Label Text="Red" />
+                <Slider Minimum="0" Maximum="255" Value="{Binding Red, Mode=TwoWay}" />
+
+                <Label Text="Green" />
+                <Slider Minimum="0" Maximum="255" Value="{Binding Green, Mode=TwoWay}" />
+
+                <Label Text="Blue" />
+                <Slider Minimum="0" Maximum="255" Value="{Binding Blue, Mode=TwoWay}" />
+
+                <BoxView HeightRequest="100" WidthRequest="100" Color="{Binding SelectedColor}" />
+
+            </StackLayout>
+
+            <Button Text="Save modifications"
+                    Command="{Binding Path=ModifyHabit, Source={x:Reference modifyHabitPage}}" />
+                    
+
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="beadando.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Margin="10,60,10,30"
+                x:Name="Logo"
+                Source="logo.png"
+                HeightRequest="70"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Label
+                Text="Welcome to Habit Tracker!"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="The more actions you take, the more progress you make"
+                LineBreakMode="WordWrap"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"/>
+
+            <ActivityIndicator IsRunning="True" Margin="40"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="beadando.AddNewHabitPage"
+             x:Name="addNewHabitPage">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout>
+        <Label 
+            Text="New Habit"
+            Style="{StaticResource PageHeadline}" />
+
+        <StackLayout Padding="20">
+            <Label Text="Text" />
+            <Entry Text="{Binding Text}" Placeholder="Habit text" />
+
+            <Label Text="Color" />
+            <StackLayout Padding="20">
+
+                <Label Text="Red" />
+                <Slider Minimum="0" Maximum="255" Value="{Binding Red, Mode=TwoWay}" />
+
+                <Label Text="Green" />
+                <Slider Minimum="0" Maximum="255" Value="{Binding Green, Mode=TwoWay}" />
+
+                <Label Text="Blue" />
+                <Slider Minimum="0" Maximum="255" Value="{Binding Blue, Mode=TwoWay}" />
+
+                <BoxView HeightRequest="100" WidthRequest="100" Color="{Binding SelectedColor}" />
+
+            </StackLayout>
+
+            <Button Text="Create new habit"
+                    Command="{Binding Path=AddHabit, Source={x:Reference addNewHabitPage}}" />
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage> 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="beadando.TodayPage"
+             x:Name="todayPage">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+    
+    <ScrollView>
+
+
+        <VerticalStackLayout Padding="10" Margin="5">
+            <Label 
+                Text="Habits for today"
+                Style="{StaticResource PageHeadline}" />
+
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding habitsList}">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout>
+                        <Label Text="Done all the things for today!" 
+                           FontSize="20"
+                           HorizontalOptions="Center" 
+                           VerticalOptions="CenterAndExpand" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Completed"
+                                       Command="{Binding Path=CompleteHabitForToday, Source={x:Reference todayPage}}"
+                                       CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <StackLayout>
+                                <Border Stroke="{Binding Color}"
+                                    StrokeThickness="1"
+                                    Background="{Binding Color}"
+                                    Margin="8"
+                                    Padding="8"
+                                    >
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10,10,10,10" />
+                                </Border.StrokeShape>
+                                    <Label Text="{Binding Text}" 
+                                       TextColor="White"
+                                       BackgroundColor="{Binding Color}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       Margin = "10,0,10,0"
+                                       />
+
+                                </Border>
+                            </StackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

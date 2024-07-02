@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="beadando.HabitsListPage"
+             x:Name="habitsListPage">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <ScrollView x:Name="scrollView">
+
+
+        <VerticalStackLayout Padding="10" Margin="5">
+
+            <CollectionView x:Name="collectionView" 
+                            ItemsSource="{Binding habitsList}">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout>
+                        <Label Text="You have not habits recorded yet" 
+                           FontSize="20"
+                           HorizontalOptions="Center" 
+                           VerticalOptions="CenterAndExpand" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Path=OpenHabitDetails, Source={x:Reference habitsListPage}}"
+                                    CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Border Stroke="{Binding Color}"
+                                    StrokeThickness="1"
+                                    Background="{Binding Color}"
+                                    Margin="5"
+                                    Padding="5"
+                                    >
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10,10,10,10" />
+                                </Border.StrokeShape>
+
+                                <Grid Padding="10">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="6*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label 
+                                            Grid.Column="0"
+                                            Text="{Binding Text}" 
+                                            TextColor="White"
+                                            BackgroundColor="{Binding Color}"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            Margin = "10,0,10,0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                        />
+                                    <ImageButton
+                                            Grid.Column="1"
+                                            Source="trash_can_solid_white.png"
+                                            BackgroundColor="{Binding Color}"
+                                            WidthRequest="20"
+                                            HeightRequest="20"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Command="{Binding Path=DeleteHabit, Source={x:Reference habitsListPage}}"
+                                            CommandParameter="{Binding .}"/>
+                                    <ImageButton  
+                                            Grid.Column="2"
+                                            Source="pen_to_square_solid_white.png"
+                                            BackgroundColor="{Binding Color}"
+                                            WidthRequest="20"
+                                            HeightRequest="20"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Command="{Binding Path=ModifyHabit, Source={x:Reference habitsListPage}}"
+                                            CommandParameter="{Binding .}"/>
+
+                                </Grid>
+                            </Border>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <ImageButton Source="square_plus_regular.png"
+                     WidthRequest="80"
+                     HeightRequest="80"
+                     Command="{Binding Path=AddNewHabit, Source={x:Reference habitsListPage}}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
